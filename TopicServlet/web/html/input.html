@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="../js/FormatTable.js"></script>
+<script src="../js/AjaxRequest.js"></script>
+<title>testpage</title>
+</head>
+<body>
+	<p id="test"></p>
+	<div>
+		name:<input id="name" type="text">
+		value:<input id="value" type="text">
+	</div>
+	<div onclick="javascipt:addInfo()">submit insert</div>
+	<a href="../index.html">back</a>
+</body>
+<script type="text/javascript">
+	showInfo();
+	
+	function showInfo(){
+		var params = new Array();
+		params[0] = updateInfo;
+		params[1] = deleteInfo;
+		var ids = new Array();
+		ids[0] = "id";
+		ids[1] = "name";
+		ids[2] = "value";
+		params[2] = ids;
+		ajax("/TopicServlet/query", "get", null, null, formatTable, null, "test", params);
+	}
+	
+	function addInfo(){
+		var data = "";
+		var nameE = document.getElementById("name");
+		var valueE = document.getElementById("value");
+		
+		data += "name=" + nameE.value;
+		data += "&";
+		data += "value=" + valueE.value;
+		ajax("/TopicServlet/insert", "post", null, null, null, data);
+	}
+
+	function updateInfo(){
+		var e = this;
+		alert(e.id);
+		alert("test clickButton");
+		var data = "";
+		var nameE = document.getElementById("name" + e.id);
+		var valueE = document.getElementById("value" + e.id);
+		var nameO = document.getElementById("nameHidden" + e.id);
+		var valueO = document.getElementById("valueHidden" + e.id);
+		
+		if(nameE.value == nameO.value && valueE.value == valueO.value){
+			alert("There is nothing changed.");
+			return;
+		}
+		
+		data += "id=" + e.id;
+		data += "&";
+		data += "name=" + nameE.value;
+		data += "&";
+		data += "value=" + valueE.value;
+		ajax("/TopicServlet/update", "post", null, null, null, data);
+	}
+	
+	function deleteInfo(){
+		alert("delete");
+		var e = this;
+		var data = "";
+		var id = e.id;
+		id = id.substring(0, id.length - 3);
+		data += "id=" + id;
+		ajax("/TopicServlet/delete", "post", null, null, disabledInfo, data, id + "tr");
+	}
+	
+	function disabledInfo(rowid){
+		alert(rowid);
+		var root = document.getElementById(rowid);
+		var queue = new Array();
+		pushNodeListIntoArray(queue, root.childNodes);
+		alert(root.nodeType);
+		while(queue.length > 0){
+			var e = queue.pop();
+			console.log(e.tagName + e.nodeType);
+			if(e.nodeType == 1){
+				pushNodeListIntoArray(queue, e.childNodes);
+				e.disabled = true;
+			}
+		}
+	}
+	
+	function pushNodeListIntoArray(array, nodelist){
+		for(var i = 0; i < nodelist.length; ++ i){
+			array.push(nodelist[i]);
+		}
+	}
+	
+</script>
+</html>
