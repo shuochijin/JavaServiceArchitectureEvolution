@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="../js/FormatTable.js"></script>
+<script src="../js/AjaxRequest.js"></script>
+<title>测试</title>
+</head>
+<body>
+	<p id="test">
+	<div onclick="javascipt:addInfo()">测试</div>
+	<a href="../index.html">返回</a>
+	<div><input type="button" value="test" onclick="javascipt:addInfo()"></div>
+</body>
+<script type="text/javascript">
+	//alert(JSON.stringify({"text":"hello"}));
+	o = {
+			head : ["名称","数值"],
+			value : [
+				["a", 1],
+				["b", 2],
+				["c", 3],
+				["d", 4]
+			]
+	}
+	formatTable("test", o);
+	function addInfo(){
+		ajax("/TopicServlet/testDemo", "post");
+	}
+</script>
+</html>
