@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>版本入口</title>
+<link rel="stylesheet" href="./css/style.css" type="text/css" />
+</head>
+<body>
+	<div>版本列表</div>
+	<div class="version" onclick="javascript:openServlet();" style="cursor:pointer;">servlet</div>
+	<!-- 
+	<div class="version" onclick="javascript:window.open('http://203n087h30.iask.in/TopicSSM')" style="cursor:pointer;">SSM</div>
+	 -->
+	<div class="version" onclick="javascript:openSpringboot();" style="cursor:pointer;">springboot</div>
+	104.156.238.107
+	<div class="annotation">注释</div>
+</body>
+<script type="text/javascript">
+//1:域名 2:localhost 3:服务器ip
+var domainType = 2;
+var domain = "203n087h30.iask.in";
+var localhost = "localhost";
+var ip ="104.156.238.107";
+var servletPort = "8080";
+var springbootPort = "8078";
+
+var domainArea = "";
+
+fetchDomain();
+
+function fetchDomain(){
+	switch(domainType){
+	case 1:
+		domainArea = domain;
+		break;
+	case 2:
+		domainArea = localhost;
+		break;
+	case 3:
+		domainArea = ip;
+		break;
+	}
+	alert(domainArea);
+}
+
+function openServlet(){
+	window.open("http://" + domainArea + ":" + servletPort + "/TopicServlet");
+}
+
+function openSpringboot(){
+	window.open("http://" + domainArea + ":" + springbootPort + "/TopicSpringBoot");
+}
+</script>
+
+</html>
