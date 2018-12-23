@@ -1,6 +1,0 @@
-/**
- * 
- */
-function ajaxUpload(url, jsonData){
-	
-}
