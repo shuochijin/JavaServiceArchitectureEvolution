@@ -38,8 +38,12 @@ public class DemoDao {
 			e.printStackTrace();
 		} finally{
 			try {
-				result.close();
-				stat.close();
+				if(result != null){
+					result.close();
+				}
+				if(stat != null){
+					stat.close();
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -75,7 +79,9 @@ public class DemoDao {
 			e.printStackTrace();
 		}finally{
 			try {
-				stat.close();
+				if(stat != null){
+					stat.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -114,8 +120,12 @@ public class DemoDao {
 			e.printStackTrace();
 		}finally{
 			try {
-				result.close();
-				stat.close();
+				if(result != null){
+					result.close();
+				}
+				if(stat != null){
+					stat.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -151,7 +161,9 @@ public class DemoDao {
 			e.printStackTrace();
 		}finally{
 			try {
-				stat.close();
+				if(stat != null){
+					stat.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -185,7 +197,9 @@ public class DemoDao {
 			e.printStackTrace();
 		}finally{
 			try {
-				stat.close();
+				if(stat != null){
+					stat.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
