@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.TopicSpringboot.dao.DemoDao">
+  <select id="getDataById" resultType="com.test.TopicSpringboot.scheme.DemoScheme">
+    select id,name,value
+      from demo
+     where id=#{id}
+  </select>
+  <select id="queryAll" resultType="com.test.TopicSpringboot.scheme.DemoScheme">
+    select * from demo
+  </select>
+  <insert id="insert" parameterType="com.test.TopicSpringboot.scheme.DemoScheme">
+    insert into demo values (#{id}, #{name}, #{value})
+  </insert>
+  <update id="updateById" parameterType="com.test.TopicSpringboot.scheme.DemoScheme">
+    update demo set name=#{name},value=#{value} where id=#{id}
+  </update>
+  <delete id="deleteById" parameterType="com.test.TopicSpringboot.scheme.DemoScheme">
+    delete from demo where id=#{id}
+  </delete>
+</mapper>
