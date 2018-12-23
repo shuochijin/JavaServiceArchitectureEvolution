@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+.version
+{
+	text-indent:20px;
+	color:blue;
+}
+
+.annotation
+{
+	font-size: 10px;
+	color: red;
+	cursor:pointer;
+}
