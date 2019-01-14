@@ -1,11 +1,14 @@
 package com.test.TopicSpringboot.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,8 +31,35 @@ public class DemoController {
 	@Autowired
 	private DemoService service;
 	
+	@Autowired RedisTemplate<?, ?> redisTemplate;
+	
+	public void cache(){
+        //下面是在程序中使用redisTemplate的例子，并且设置了这个key一分钟后过期
+        String key = "CACHE-DATE";
+        @SuppressWarnings("unchecked")
+        RedisTemplate<String, Date> rt = (RedisTemplate<String, Date>) redisTemplate;
+        
+        Date d = rt.opsForValue().get(key);
+        if( d == null) {
+            d = new Date();
+            rt.opsForValue().set(key, d);
+            Calendar c = Calendar.getInstance();
+            c.add(Calendar.MINUTE, 1);
+            rt.expireAt(key, c.getTime()); //设置1分钟后过期
+            LogUtil.trace("set date " + d + " to cache");
+        }else {
+            LogUtil.trace("date form cache is " + d);
+        }
+	}
+	
 	@GetMapping
 	public Map<String, Object> queryAll(){
+		try{
+			cache();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		List<String> head = new ArrayList<String>();
@@ -68,10 +98,10 @@ public class DemoController {
 	}
 	
 	@GetMapping("/{id}")
-	public DemoScheme selectOne(@PathVariable int id){
+	public DemoScheme getDataById(@PathVariable int id){
 		DemoScheme scheme = new DemoScheme();
 		try{
-			scheme = service.selectOne(id);
+			scheme = service.getDataById(id);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -96,6 +126,7 @@ public class DemoController {
 			service.insert(scheme);
 			message = "success";
 		}catch(Exception e){
+			e.printStackTrace();
 			message = "failed";
 		}
 		
@@ -117,6 +148,7 @@ public class DemoController {
 			service.delete(scheme);
 			message = "success";
 		}catch(Exception e){
+			e.printStackTrace();
 			message = "failed";
 		}
 		
@@ -141,6 +173,7 @@ public class DemoController {
 			service.update(scheme);
 			message = "success";
 		}catch(Exception e){
+			e.printStackTrace();
 			message = "failed";
 		}
 		
