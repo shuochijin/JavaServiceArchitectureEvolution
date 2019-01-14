@@ -33,7 +33,7 @@ function createHead(tableNode, headArray){
 }
 
 function createTable(tableNode, tableArray, params){
-	var ids = params[2];
+	var ids = params[3];
 	for(var i = 0; i < tableArray.length; ++ i){
 		var tableRow = document.createElement("tr");
 		var valueRow = tableArray[i];
@@ -75,8 +75,15 @@ function createTable(tableNode, tableArray, params){
 		buttonD.value = "delete";
 		buttonD.onclick = params[1];
 		
+		var buttonS = document.createElement("input");
+		buttonS.id = id;
+		buttonS.type = "button";
+		buttonS.value = "getDataById";
+		buttonS.onclick = params[2];
+		
 		tdButton.appendChild(button);
 		tdButton.appendChild(buttonD);
+		tdButton.appendChild(buttonS);
 		tableRow.appendChild(tdButton);
 		tableNode.appendChild(tableRow);
 	}
