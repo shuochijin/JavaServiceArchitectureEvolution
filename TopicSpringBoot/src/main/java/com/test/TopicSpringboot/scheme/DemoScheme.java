@@ -1,7 +1,11 @@
 package com.test.TopicSpringboot.scheme;
 
-public class DemoScheme {
+import java.io.Serializable;
+
+public class DemoScheme implements Serializable {
 	
+	private static final long serialVersionUID = -5941471445085050699L;
+
 	private int id;
 	
 	private String name;
