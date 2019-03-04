@@ -11,13 +11,13 @@ public interface DemoDao {
 	
 	@Select("select * from demo")
 	public List<DemoScheme> getAll();
-	
+
 	@Mapper
 	public DemoScheme getDataById(int id);
-	
+
 	@Mapper
 	public List<DemoScheme> queryAll();
-	
+
 	@Mapper
 	public int insert(DemoScheme scheme);
 	
