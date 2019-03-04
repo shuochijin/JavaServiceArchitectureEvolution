@@ -2,3 +2,6 @@
 TopicSpringBoot/.classpath
 TopicSpringBoot/.project
 *.prefs
+repository/.classpath
+repository/.project
+*.class
