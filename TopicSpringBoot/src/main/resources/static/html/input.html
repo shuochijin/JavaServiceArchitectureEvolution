@@ -24,11 +24,12 @@
 		var params = new Array();
 		params[0] = updateInfo;
 		params[1] = deleteInfo;
+		params[2] = getDataById;
 		var ids = new Array();
 		ids[0] = "id";
 		ids[1] = "name";
 		ids[2] = "value";
-		params[2] = ids;
+		params[3] = ids;
 		ajax("/TopicSpringBoot/demo", "get", null, null, formatTable, null, "test", params);
 	}
 	
@@ -41,6 +42,14 @@
 		data += "&";
 		data += "value=" + valueE.value;
 		ajax("/TopicSpringBoot/demo", "post", null, null, null, data);
+	}
+	
+	function getDataById(){
+		ajax("/TopicSpringBoot/demo/" + this.id, "get", null, null, alertInfo, null, null, null);
+	}
+	
+	function alertInfo(relatedE, o, callBackparams){
+		alert(JSON.stringify(o));
 	}
 
 	function updateInfo(){
