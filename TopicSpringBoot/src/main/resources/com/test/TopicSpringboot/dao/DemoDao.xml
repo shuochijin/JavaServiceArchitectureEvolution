@@ -10,7 +10,7 @@
     select * from demo
   </select>
   <insert id="insert" parameterType="com.test.TopicSpringboot.scheme.DemoScheme">
-    insert into demo values (#{id}, #{name}, #{value})
+    insert into demo(name,value) values (#{name}, #{value})
   </insert>
   <update id="updateById" parameterType="com.test.TopicSpringboot.scheme.DemoScheme">
     update demo set name=#{name},value=#{value} where id=#{id}
