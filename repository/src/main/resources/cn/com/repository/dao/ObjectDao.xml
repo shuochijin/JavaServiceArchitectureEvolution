@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	`id` bigint(64) not null auto_increment comment '物品id' primary key,
+    `name` varchar(100) NOT NULL COMMENT '名称',
+    `type` VARCHAR(100) NOT NULL COMMENT '类型',
+    `uid` bigint(64) not null comment '用户id',
+    `remark` varchar(200) comment '备注',
+    `barcode` varchar(50) COMMENT '条形码'
+ -->
+<mapper namespace="cn.com.repository.dao.ObjectDao">
+  <select id="getDataById" resultType="cn.com.repository.entity.ObjectEntity">
+    select id,name,type,uid,remark,barcode
+      from object
+     where id=#{id}
+  </select>
+  <select id="queryAll" resultType="cn.com.repository.entity.ObjectEntity">
+    select id,name,type,uid,remark,barcode from object
+  </select>
+  <select id="queryPage" parameterType="java.util.Map" resultType="cn.com.repository.entity.ObjectEntity">
+    select id,name,type,uid,remark,barcode from object limit #{pageIndex},#{pageSize}
+  </select>
+  <insert id="insert" parameterType="cn.com.repository.entity.ObjectEntity" useGeneratedKeys="true" keyProperty="id">
+    insert into object(id,name,type,uid,remark,barcode) values (#{id}, #{name}, #{type}, #{uid}, #{remark}, #{barcode})
+  </insert>
+  <update id="updateById" parameterType="cn.com.repository.entity.ObjectEntity">
+    update object set name=#{name},type=#{type},uid=#{uid},remark=#{remark},barcode=#{barcode} where id=#{id}
+  </update>
+  <delete id="deleteById" parameterType="cn.com.repository.entity.ObjectEntity">
+    delete from object where id=#{id}
+  </delete>
+  <delete id="deleteByIds">
+    delete from object where id in 
+    <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+    	#{id}
+    </foreach>
+  </delete>
+</mapper>
