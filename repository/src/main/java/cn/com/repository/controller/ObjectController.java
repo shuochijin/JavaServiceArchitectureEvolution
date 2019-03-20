@@ -23,7 +23,7 @@ public class ObjectController {
 	private ObjectService service;
 	
 	@RequestMapping(value = "/getDataById/{id}", method = RequestMethod.GET)
-	public AjaxResponseData getDataById(@PathVariable int id) {
+	public AjaxResponseData getDataById(@PathVariable long id) {
 		System.out.println(id);
 		AjaxResponseData result = new AjaxResponseData();
 		
@@ -49,7 +49,7 @@ public class ObjectController {
 	@RequestMapping(value = "/queryPage/{pageIndex}/{pageSize}", method = RequestMethod.GET)
 	public AjaxResponseData queryPage(@PathVariable int pageIndex, @PathVariable int pageSize) {
 		AjaxResponseData result = new AjaxResponseData();
-
+		
 		System.out.println((pageIndex - 1) * pageSize);
 		System.out.println(pageSize);
 		result.setIsSuccess("success");
