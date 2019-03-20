@@ -10,7 +10,7 @@ import cn.com.repository.entity.ObjectEntity;
 public interface ObjectDao {
 
 	@Mapper
-	public ObjectEntity getDataById(int id);
+	public ObjectEntity getDataById(long id);
 
 	@Mapper
 	public List<ObjectEntity> queryAll();
