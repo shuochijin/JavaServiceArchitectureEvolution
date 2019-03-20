@@ -16,7 +16,7 @@ public class ObjectService {
 	@Autowired
 	private ObjectDao dao;
 
-	public ObjectEntity getDataById(int id) {
+	public ObjectEntity getDataById(long id) {
 		return dao.getDataById(id);
 	}
 
