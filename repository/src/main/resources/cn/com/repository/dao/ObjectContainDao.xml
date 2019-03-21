@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	`packageid` bigint(64) not null comment '包装id',
+    `objectid` bigint(64) not null comment '物品id',
+    `status` varchar(1) not null comment '状态'
+ -->
+<mapper namespace="cn.com.repository.dao.ObjectContainDao">
+  <select id="getDataById" parameterType="cn.com.repository.entity.ObjectContainEntity" resultType="cn.com.repository.entity.ObjectContainEntity">
+    select packageid,objectid,status
+      from objectcontain
+     where packageid=#{packageId} and objectid=#{objectId}
+  </select>
+  <select id="queryAll" resultType="cn.com.repository.entity.ObjectContainEntity">
+    select packageid,objectid,status from objectcontain
+  </select>
+  <select id="queryPage" parameterType="java.util.Map" resultType="cn.com.repository.entity.ObjectContainEntity">
+    select packageid,objectid,status from objectcontain limit #{pageIndex},#{pageSize}
+  </select>
+  <insert id="insert" parameterType="cn.com.repository.entity.ObjectContainEntity">
+    insert into objectcontain (packageid,objectid,status) values (#{packageId}, #{objectId}, #{status})
+  </insert>
+  <update id="updateById" parameterType="cn.com.repository.entity.ObjectContainEntity">
+    update objectcontain set status=#{status} where packageid=#{packageId} and objectid=#{objectId}
+  </update>
+  <delete id="deleteById" parameterType="cn.com.repository.entity.ObjectContainEntity">
+    delete from objectcontain where packageid=#{packageId} and objectid=#{objectId}
+  </delete>
+  <delete id="deleteByIds">
+    delete from objectcontain where packageid in 
+      <foreach item="packageId" index="index" collection="list" open="(" separator="," close=")">
+        #{packageId}
+      </foreach>
+      and objectid in
+      <foreach item="objectId" index="index"  collection="list" open="(" separator="," close=")">
+        #{objectId}
+      </foreach>
+  </delete>
+</mapper>
