@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.com.repository.dao.UserDao">
   <select id="getDataById" resultType="cn.com.repository.entity.UserEntity">
-    select id,nickname,password
+    select uid,nickname,password
       from user
-     where id=#{id}
+     where uid=#{uid}
   </select>
   <select id="queryAll" resultType="cn.com.repository.entity.UserEntity">
     select * from user
@@ -13,9 +13,9 @@
     insert into user(nickname,password) values (#{nickName}, #{password})
   </insert>
   <update id="updateById" parameterType="cn.com.repository.entity.UserEntity">
-    update user set nickname=#{nickName},password=#{password} where id=#{id}
+    update user set nickname=#{nickName},password=#{password} where uid=#{uid}
   </update>
   <delete id="deleteById" parameterType="cn.com.repository.entity.UserEntity">
-    delete from user where id=#{id}
+    delete from user where uid=#{uid}
   </delete>
 </mapper>
