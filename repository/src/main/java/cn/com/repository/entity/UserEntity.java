@@ -7,18 +7,18 @@ package cn.com.repository.entity;
  */
 public class UserEntity {
 	
-	private long id;
+	private long uid;
 
 	private String nickName;
 	
 	private String password;
 	
-	public long getId() {
-		return id;
+	public long getUid() {
+		return uid;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setUid(long uid) {
+		this.uid = uid;
 	}
 
 	public String getNickName() {
