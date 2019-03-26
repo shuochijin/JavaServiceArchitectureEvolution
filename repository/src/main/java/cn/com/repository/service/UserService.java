@@ -2,12 +2,13 @@ package cn.com.repository.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cn.com.repository.dao.UserDao;
 import cn.com.repository.entity.UserEntity;
 
+@Service
 public class UserService {
 	
 	@Autowired
