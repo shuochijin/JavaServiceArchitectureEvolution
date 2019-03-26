@@ -19,9 +19,9 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public UserEntity getDataById(@PathVariable long id) {
-		return userService.getDataById(id);
+	@RequestMapping(value="/{uid}", method=RequestMethod.GET)
+	public UserEntity getDataById(@PathVariable long uid) {
+		return userService.getDataById(uid);
 	}
 	
 	@RequestMapping(value="/queryAll", method=RequestMethod.GET)
@@ -34,16 +34,22 @@ public class UserController {
 		return userService.insert(entity);
 	}
 
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public int updateById(@PathVariable long id) {
+	@RequestMapping(value="/{uid}", method=RequestMethod.PUT)
+	public int updateById(@PathVariable long uid) {
 		UserEntity entity = new UserEntity();
-		entity.setId(id);
+		entity.setUid(uid);
 		return userService.updateById(entity);
 	}
 
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public int deleteById(@PathVariable long id) {
-		return userService.deleteById(id);
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public int updateById(@RequestBody UserEntity entity) {
+		System.out.println(entity.getUid());
+		return userService.updateById(entity);
+	}
+
+	@RequestMapping(value="/{uid}", method=RequestMethod.DELETE)
+	public int deleteById(@PathVariable long uid) {
+		return userService.deleteById(uid);
 	
 	}
 	
