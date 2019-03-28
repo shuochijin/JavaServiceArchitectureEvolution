@@ -1,8 +1,8 @@
+/*drop database repository;*/
+
 create database repository;
 
 use repository;
-
-/*drop database repository;*/
 
 create table `object`(
 	`id` bigint(64) not null auto_increment comment '物品id' primary key,
