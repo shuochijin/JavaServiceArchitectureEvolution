@@ -2,6 +2,9 @@
 TopicSpringBoot/.classpath
 TopicSpringBoot/.project
 *.prefs
-repository/.classpath
-repository/.project
+*/.classpath
+*/.project
 *.class
+/.metadata/
+test*
+Servers
